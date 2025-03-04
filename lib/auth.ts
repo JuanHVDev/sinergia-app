@@ -1,6 +1,7 @@
-import { betterAuth } from "better-auth";
+import { betterAuth, User } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import prisma from "./prisma";
+import { sendEmail } from "@/actions/email";
 
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
@@ -8,6 +9,28 @@ export const auth = betterAuth({
     }),
     emailAndPassword: {
         enabled: true,
+        requireEmailVerification: true,
+        sendResetPassword: async ({
+            user,
+            url,
+        }: {
+            user: User;
+            url: string;
+        }) => {
+            await sendEmail(user, url, "Reinicio de contraseña");
+        },
+    },
+    emailVerification: {
+        sendOnSignUp: true,
+        autoSignInAfterVerification: true,
+        sendVerificationEmail: async ({ user, token }) => {
+            const verificationUrl = `${process.env.BETTER_AUTH_URL}/api/auth/verify-email?token=${token}&callbackURL=${process.env.EMAIL_VERIFICATION_CALLBACK_URL}`;
+            await sendEmail(
+                user,
+                verificationUrl,
+                "Verificación de correo electrónico"
+            );
+        },
     },
     // socialProviders: {
     //     google: {

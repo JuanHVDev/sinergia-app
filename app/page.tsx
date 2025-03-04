@@ -1,8 +1,16 @@
 import { Button } from "@/components/ui/button";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+    const session = await auth.api.getSession({ headers: await headers() });
+    console.log(session);
+    if (session) {
+        redirect("/dashboard");
+    }
     return (
         <div className="flex flex-col min-h-screen">
             <header className="px-4 lg:px-6 h-14 flex items-center py-12">

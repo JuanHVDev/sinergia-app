@@ -1,3 +1,4 @@
+import NavBar from "@/components/navbar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,5 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-    return <div>{children}</div>;
+    return (
+        <div>
+            <NavBar />
+            {children}
+        </div>
+    );
 }

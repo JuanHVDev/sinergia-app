@@ -49,7 +49,7 @@ const FormRegister = () => {
                 email,
                 password,
                 name,
-                callbackURL: "/home",
+                callbackURL: "/dashboard",
             },
             {
                 onRequest(context) {
@@ -57,10 +57,18 @@ const FormRegister = () => {
                 },
                 onSuccess(context) {
                     form.reset();
-                    router.push("/home");
+                    toast("Cuenta creada con exito", {
+                        description:
+                            "Se te ha enviado un correo para verificar tu cuenta, por favor verifica tu correo electrónico",
+                    });
+                    router.push("/login");
                 },
                 onError(error) {
-                    toast(`${error.error.message}`);
+                    if (error.error.status === 403) {
+                        toast.error("Correo electrónico no verificado");
+                    } else {
+                        toast(`${error.error.message}`);
+                    }
                 },
             }
         );

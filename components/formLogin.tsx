@@ -41,7 +41,7 @@ const FormLogin = () => {
             {
                 email,
                 password,
-                callbackURL: "/home",
+                callbackURL: "/dashboard",
             },
             {
                 onRequest(context) {
@@ -51,7 +51,11 @@ const FormLogin = () => {
                     form.reset();
                 },
                 onError(error) {
-                    toast(`${error.error.message}`);
+                    if (error.error.status === 403) {
+                        toast("Correo electrónico no verificado");
+                    } else {
+                        toast(`${error.error.message}`);
+                    }
                 },
             }
         );
@@ -96,6 +100,15 @@ const FormLogin = () => {
                     Iniciar sesión
                 </Button>
             </form>
+            <div className="flex justify-between items-center mt-2">
+                <p>Olvidaste tu contraseña? </p>
+                <Link
+                    href="/forgot-password"
+                    className="text-sm text-muted-foreground"
+                >
+                    <span className="text-primary">Recuperar contraseña</span>
+                </Link>
+            </div>
             <p className="text-sm text-muted-foreground mt-2">
                 No tienes una cuenta?{" "}
                 <Link href="/register" className="text-primary">
