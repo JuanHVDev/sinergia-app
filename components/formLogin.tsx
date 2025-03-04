@@ -14,11 +14,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { auth } from "@/lib/auth";
-import { useRouter } from "next/navigation";
 import { signIn } from "@/lib/auth-client";
 import Link from "next/link";
-
+import ButtonGoogle from "./google";
 const formSchema = z.object({
     email: z.string().email({
         message: "Ingrese un correo electrónico válido",
@@ -100,6 +98,7 @@ const FormLogin = () => {
                     Iniciar sesión
                 </Button>
             </form>
+            <ButtonGoogle />
             <div className="flex justify-between items-center mt-2">
                 <p>Olvidaste tu contraseña? </p>
                 <Link

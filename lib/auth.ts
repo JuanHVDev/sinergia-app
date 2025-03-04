@@ -1,4 +1,4 @@
-import { betterAuth, User } from "better-auth";
+import { betterAuth, BetterAuthOptions, User } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import prisma from "./prisma";
 import { sendEmail } from "@/actions/email";
@@ -7,6 +7,14 @@ export const auth = betterAuth({
     database: prismaAdapter(prisma, {
         provider: "postgresql",
     }),
+    session: {
+        expiresIn: 24 * 60 * 60 * 7,
+        updateAge: 24 * 60 * 60 * 7,
+        cookieCache: {
+            enabled: true,
+            maxAge: 5 * 60,
+        },
+    },
     emailAndPassword: {
         enabled: true,
         requireEmailVerification: true,
@@ -32,10 +40,12 @@ export const auth = betterAuth({
             );
         },
     },
-    // socialProviders: {
-    //     google: {
-    //         clientId: process.env.GOOGLE_CLIENT_ID as string,
-    //         clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    //     },
-    // },
-});
+    socialProviders: {
+        google: {
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+        },
+    },
+} satisfies BetterAuthOptions);
+
+export type Session = typeof auth.$Infer.Session;

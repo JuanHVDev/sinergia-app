@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { signUp } from "@/lib/auth-client";
 import Link from "next/link";
+import ButtonGoogle from "./google";
 
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -127,6 +128,7 @@ const FormRegister = () => {
                     Crear cuenta
                 </Button>
             </form>
+            <ButtonGoogle />
             <p className="text-sm text-muted-foreground mt-2">
                 Ya tienes una cuenta?{" "}
                 <Link href="/login" className="text-primary">
