@@ -1,5 +1,5 @@
 import CardForm from "@/components/CardForm";
-import FormLogin from "@/components/formLogin";
+import FormLogin from "@/components/auth/formLogin";
 
 export default function LoginPage() {
     return (

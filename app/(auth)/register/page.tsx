@@ -1,5 +1,5 @@
 import CardForm from "@/components/CardForm";
-import FormRegister from "@/components/formRegister";
+import FormRegister from "@/components/auth/formRegister";
 
 export default function RegisterPage() {
     return (

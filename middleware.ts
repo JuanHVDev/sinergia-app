@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { betterFetch, BetterFetch } from "@better-fetch/fetch";
 import type { Session } from "@/lib/auth";
 
-const authRoutes = ["/login", "/register"];
+const authRoutes = ["/login", "/register", "/organization/new"];
 const passwordAuthRoutes = ["/reset-password", "/forgot-password"];
 const publicRoutes = ["/"];
 
@@ -29,6 +29,7 @@ export default async function middleware(request: NextRequest) {
     if (isAuthRoute || isPasswordAuthRoute) {
         return NextResponse.redirect(new URL("/dashboard", request.url));
     }
+    return NextResponse.next();
 }
 export const config = {
     matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],

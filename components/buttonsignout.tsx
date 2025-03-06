@@ -8,7 +8,9 @@ import { redirect } from "next/navigation";
 function ButtonSignOut() {
     return (
         <Button
-            variant="link"
+            asChild
+            variant="outline"
+            className="border-none"
             onClick={async () =>
                 await signOut({
                     fetchOptions: {
@@ -19,7 +21,7 @@ function ButtonSignOut() {
                 })
             }
         >
-            Logout
+            <span>Logout</span>
         </Button>
     );
 }

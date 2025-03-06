@@ -1,6 +1,8 @@
 "use client";
 import { signIn } from "@/lib/auth-client";
 import { Button } from "./ui/button";
+import { getOrganization } from "@/actions/organization";
+import { useRouter } from "next/navigation";
 
 const GoogleIcon = () => {
     return (
@@ -39,11 +41,17 @@ const GoogleIcon = () => {
 };
 
 const ButtonGoogle = () => {
+    const router = useRouter();
+    const handleGoogleSignIn = async () => {
+        const { data, error } = await signIn.social({
+            provider: "google",
+        });
+    };
     return (
         <Button
             variant="outline"
             className="w-full"
-            onClick={() => signIn.social({ provider: "google" })}
+            onClick={handleGoogleSignIn}
         >
             <GoogleIcon />
         </Button>
