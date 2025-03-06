@@ -27,7 +27,7 @@ export default async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL("/login", request.url));
     }
     if (isAuthRoute || isPasswordAuthRoute) {
-        return NextResponse.redirect(new URL("/dashboard", request.url));
+        return NextResponse.redirect(new URL("/organization", request.url));
     }
     return NextResponse.next();
 }

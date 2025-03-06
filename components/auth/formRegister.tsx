@@ -50,7 +50,7 @@ const FormRegister = () => {
                 email,
                 password,
                 name,
-                callbackURL: "/dashboard",
+                callbackURL: "/organization/new",
             },
             {
                 onRequest(context) {

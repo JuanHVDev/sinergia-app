@@ -4,24 +4,20 @@ import {
     SidebarContent,
     SidebarFooter,
     SidebarGroup,
-    SidebarGroupAction,
     SidebarGroupContent,
-    SidebarGroupLabel,
     SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Button } from "@react-email/components";
-import { Folder, LayoutDashboard, List, Settings, Plus } from "lucide-react";
-import Image from "next/image";
+import { Building2, Folder, List, Settings } from "lucide-react";
 import Link from "next/link";
 
 const sidebarItems = [
     {
-        title: "Dashboard",
-        icon: <LayoutDashboard />,
-        href: "/dashboard",
+        title: "Organizaciones",
+        icon: <Building2 />,
+        href: "/organization",
     },
     {
         title: "Tareas",

@@ -1,7 +1,6 @@
 "use client";
 import { signIn } from "@/lib/auth-client";
 import { Button } from "./ui/button";
-import { getOrganization } from "@/actions/organization";
 import { useRouter } from "next/navigation";
 
 const GoogleIcon = () => {
@@ -45,6 +44,7 @@ const ButtonGoogle = () => {
     const handleGoogleSignIn = async () => {
         const { data, error } = await signIn.social({
             provider: "google",
+            callbackURL: "/organization/new",
         });
     };
     return (

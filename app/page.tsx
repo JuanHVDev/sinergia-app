@@ -9,7 +9,7 @@ export default async function Home() {
     const session = await auth.api.getSession({ headers: await headers() });
     console.log(session);
     if (session) {
-        redirect("/dashboard");
+        redirect("/organization");
     }
     return (
         <div className="flex flex-col min-h-screen">
