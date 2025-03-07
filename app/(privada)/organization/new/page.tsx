@@ -36,7 +36,7 @@ export default function NewOrganizationPage() {
         try {
             // Aquí irá la lógica para crear la organización
             toast.success("Organización creada exitosamente");
-            router.push("/dashboard");
+            router.push("/organization");
         } catch (error) {
             toast.error("Error al crear la organización");
         }

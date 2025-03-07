@@ -41,7 +41,7 @@ const FormLogin = () => {
             {
                 email,
                 password,
-                callbackURL: "/dashboard",
+                callbackURL: "/organization/new",
             },
             {
                 onRequest(context) {
@@ -49,7 +49,6 @@ const FormLogin = () => {
                 },
                 onSuccess: async (context) => {
                     form.reset();
-                    router.push("/organization/new");
                 },
                 onError(error) {
                     if (error.error.status === 403) {

@@ -22,7 +22,7 @@ export const auth = betterAuth({
     plugins: [
         organization({
             organizationLimit: async (user: User | undefined) => {
-                if (!user) return false;
+                if (!user) return 0;
                 const subscription = await getSubscription(user.id);
                 return subscription === "FREE"
                     ? 2
@@ -30,7 +30,7 @@ export const auth = betterAuth({
                       ? 4
                       : 10;
             },
-            membershipLimit: async (organization: Organization) => {
+            membershipLimit: async (organization: Organization | undefined) => {
                 if (!organization) return 0;
                 const subscription = await getSubscription(organization.id);
                 return subscription === "FREE"
