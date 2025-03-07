@@ -11,12 +11,12 @@ export default function EmailVerificationPage() {
                 Tu correo electrónico ha sido verificado con éxito.
             </p>
             <Link
-                href="/dashboard"
+                href="/organization"
                 className={buttonVariants({
                     variant: "default",
                 })}
             >
-                Ir a Dashboard
+                Ir a Organizaciones
             </Link>
         </div>
     );

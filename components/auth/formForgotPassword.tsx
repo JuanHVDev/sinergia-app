@@ -6,9 +6,9 @@ import {
     FormItem,
     FormLabel,
     FormField,
-} from "./ui/form";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { forgetPassword } from "@/lib/auth-client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
